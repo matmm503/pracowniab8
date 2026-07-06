@@ -3,142 +3,165 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Salon Premium | Ekskluzywne Fryzjerstwo</title>
+    <title>Salon Premium | High-End Hairdressing</title>
     
-    <!-- Eleganckie Fonty z Google Fonts -->
+    <!-- Luksusowa Typografia: Playfair Display (nagłówki) & Inter (teksty) -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Montserrat:wght@300;400;500&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400&family=Playfair+Display:ital,wght@0,400;0,500;1,400;1,500&display=swap" rel="stylesheet">
     
-    <!-- Link do stylów -->
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
 
-    <!-- ================= KROK 1: PRELOADER ================= -->
+    <!-- Efekt ziarna filmowego na całej stronie (Quiet Luxury) -->
+    <div class="noise-overlay"></div>
+
+    <!-- Minimalistyczny Preloader -->
     <div class="preloader">
-        <div class="preloader-brand">SALON PREMIUM</div>
-        <div class="progress-container">
-            <div class="progress-bar"></div>
+        <div class="preloader-text">Wczytywanie doświadczenia...</div>
+        <div class="progress-line">
+            <div class="progress-line-inner"></div>
         </div>
     </div>
 
+    <!-- Nawigacja -->
+    <nav class="navbar gs-reveal-nav">
+        <div class="nav-brand">ATELIER</div>
+        <a href="#booking" class="nav-btn">Zarezerwuj</a>
+    </nav>
+
     <main>
-        <!-- ================= KROK 2: SEKCJA HERO ================= -->
+        <!-- SEKCJA HERO: Kinematograficzna z tłem -->
         <section class="hero">
-            <!-- Wektorowe liście rzucające głęboki cień -->
-            <img src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 512 512' fill='%234f6f52'%3E%3Cpath d='M497.9,14.1c-1.9-1.9-4.4-2.9-7-2.8C451.2,12.3,360.3,19.3,268.8,84.8C174.5,152.3,87.1,236.4,51.8,318.1 c-20.7,48-25,90.5-23.8,124.9c-8.5,6.4-16.2,13.9-22.4,22c-5.8,7.7-6.5,18.4-1.8,26.9c4.7,8.4,13.9,13.4,23.6,12.7 c24.1-1.7,44.2-14.7,58.7-30.9c34.8-2.9,75.1-15.6,117.7-38C287.1,392,367.7,308.2,431.1,215c64.7-95.2,71.2-189.7,71.7-226.8 C502.8,18.2,500.5,15.7,497.9,14.1z'/%3E%3C/svg%3E" alt="" class="jungle-leaf leaf-1">
-            <img src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 512 512' fill='%234f6f52'%3E%3Cpath d='M497.9,14.1c-1.9-1.9-4.4-2.9-7-2.8C451.2,12.3,360.3,19.3,268.8,84.8C174.5,152.3,87.1,236.4,51.8,318.1 c-20.7,48-25,90.5-23.8,124.9c-8.5,6.4-16.2,13.9-22.4,22c-5.8,7.7-6.5,18.4-1.8,26.9c4.7,8.4,13.9,13.4,23.6,12.7 c24.1-1.7,44.2-14.7,58.7-30.9c34.8-2.9,75.1-15.6,117.7-38C287.1,392,367.7,308.2,431.1,215c64.7-95.2,71.2-189.7,71.7-226.8 C502.8,18.2,500.5,15.7,497.9,14.1z'/%3E%3C/svg%3E" alt="" class="jungle-leaf leaf-2">
-            <img src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 512 512' fill='%234f6f52'%3E%3Cpath d='M497.9,14.1c-1.9-1.9-4.4-2.9-7-2.8C451.2,12.3,360.3,19.3,268.8,84.8C174.5,152.3,87.1,236.4,51.8,318.1 c-20.7,48-25,90.5-23.8,124.9c-8.5,6.4-16.2,13.9-22.4,22c-5.8,7.7-6.5,18.4-1.8,26.9c4.7,8.4,13.9,13.4,23.6,12.7 c24.1-1.7,44.2-14.7,58.7-30.9c34.8-2.9,75.1-15.6,117.7-38C287.1,392,367.7,308.2,431.1,215c64.7-95.2,71.2-189.7,71.7-226.8 C502.8,18.2,500.5,15.7,497.9,14.1z'/%3E%3C/svg%3E" alt="" class="jungle-leaf leaf-3">
-            <img src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 512 512' fill='%234f6f52'%3E%3Cpath d='M497.9,14.1c-1.9-1.9-4.4-2.9-7-2.8C451.2,12.3,360.3,19.3,268.8,84.8C174.5,152.3,87.1,236.4,51.8,318.1 c-20.7,48-25,90.5-23.8,124.9c-8.5,6.4-16.2,13.9-22.4,22c-5.8,7.7-6.5,18.4-1.8,26.9c4.7,8.4,13.9,13.4,23.6,12.7 c24.1-1.7,44.2-14.7,58.7-30.9c34.8-2.9,75.1-15.6,117.7-38C287.1,392,367.7,308.2,431.1,215c64.7-95.2,71.2-189.7,71.7-226.8 C502.8,18.2,500.5,15.7,497.9,14.1z'/%3E%3C/svg%3E" alt="" class="jungle-leaf leaf-4">
+            <div class="hero-bg">
+                <!-- Eleganckie, ciemne zdjęcie w tle (Unsplash) -->
+                <img src="https://images.unsplash.com/photo-1595476108010-b4d1f10d5e43?q=80&w=1920&auto=format&fit=crop" alt="Premium Hair Texture" class="hero-image">
+                <div class="hero-overlay"></div>
+            </div>
 
             <div class="hero-content">
-                <h1 class="hero-title">Odkryj swoje piękno na nowo</h1>
-                <p class="hero-subtitle">Ekskluzywne doświadczenie dla Twoich włosów. <br>Harmonia natury i nowoczesnego luksusu.</p>
-                <!-- Wklej tutaj swój link do Booksy -->
-                <a href="#" class="btn-primary" target="_blank" rel="noopener noreferrer">Zarezerwuj wizytę (Booksy)</a>
+                <span class="hero-eyebrow gs-reveal-hero">Sztuka Fryzjerstwa</span>
+                <h1 class="hero-title gs-reveal-hero">Odkryj swoje <br> <em>piękno</em> na nowo.</h1>
+                <div class="hero-action gs-reveal-hero">
+                    <a href="#" class="btn-outline">Zarezerwuj wizytę na Booksy</a>
+                </div>
             </div>
             
-            <!-- Delikatna podpowiedź scrollowania -->
-            <div class="scroll-indicator">
-                <div class="mouse"></div>
+            <div class="scroll-indicator gs-reveal-hero">
+                <span>Przewiń w dół</span>
+                <div class="line"></div>
             </div>
         </section>
 
-        <!-- ================= KROK 3: O PRACOWNI ================= -->
-        <section class="about section-padding" id="about">
-            <div class="container gs-reveal">
-                <h2 class="section-heading">O Pracowni</h2>
-                <p class="about-text">
-                    Stworzyliśmy to miejsce z myślą o osobach ceniących najwyższą jakość i chwilę wytchnienia. W naszej pracowni fryzjerstwo to sztuka, a każde cięcie czy koloryzacja jest procesem projektowanym indywidualnie. Używamy wyłącznie organicznych, starannie wyselekcjonowanych produktów, by dbać nie tylko o wygląd, ale i zdrowie Twoich włosów.
-                </p>
-            </div>
-        </section>
-
-        <!-- ================= KROK 4: USŁUGI / CENNIK ================= -->
-        <section class="services section-padding bg-darker" id="services">
-            <div class="container">
-                <h2 class="section-heading gs-reveal">Nasze Usługi</h2>
-                
-                <div class="services-grid">
-                    <div class="service-card gs-reveal">
-                        <h3 class="service-title">Strzyżenie Damskie</h3>
-                        <p class="service-price">150 - 250 PLN</p>
-                        <p class="service-desc">Precyzyjne cięcie dopasowane do kształtu twarzy i struktury włosa, obejmujące mycie, masaż relaksacyjny głowy oraz stylizację końcową.</p>
-                    </div>
-                    
-                    <div class="service-card gs-reveal">
-                        <h3 class="service-title">Koloryzacja Premium</h3>
-                        <p class="service-price">od 350 PLN</p>
-                        <p class="service-desc">Wieloetapowa, bezpieczna koloryzacja (AirTouch, Sombre, Balayage) z użyciem produktów chroniących wiązania strukturalne we włosach.</p>
-                    </div>
-                    
-                    <div class="service-card gs-reveal">
-                        <h3 class="service-title">Pielęgnacja SPA</h3>
-                        <p class="service-price">200 PLN</p>
-                        <p class="service-desc">Głęboko odżywcza kuracja rytualna dopasowana do potrzeb skóry głowy i łodygi włosa. Całkowita odbudowa, nawilżenie i relaks.</p>
-                    </div>
+        <!-- SEKCJA: O PRACOWNI -->
+        <section class="about section-padding">
+            <div class="container about-grid">
+                <div class="about-text-content gs-reveal-up">
+                    <h2 class="section-title">Harmonia & <br><em>Nowoczesny luksus</em></h2>
+                    <p class="body-text">
+                        Odrzucamy rutynę. W naszym Atelier fryzjerstwo to projektowanie formy i koloru na najwyższym poziomie. Skupiamy się na indywidualnej architekturze Twojej twarzy, strukturze włosa oraz Twoim stylu życia.
+                    </p>
+                    <p class="body-text">
+                        Pracujemy w ciszy, bez pośpiechu, korzystając wyłącznie z bezkompromisowych, organicznych kosmetyków. To czas wyłącznie dla Ciebie.
+                    </p>
                 </div>
-                
-                <div class="text-center gs-reveal" style="margin-top: 60px;">
-                    <a href="#" class="btn-primary">Pełny cennik na Booksy</a>
+                <div class="about-image-wrapper gs-reveal-up">
+                    <!-- Eleganckie zdjęcie wnętrza/detalu -->
+                    <img src="https://images.unsplash.com/photo-1633681926022-84c23e8cb2d6?q=80&w=800&auto=format&fit=crop" alt="Salon Interior" class="about-image">
                 </div>
             </div>
         </section>
 
-        <!-- ================= KROK 5: KONTAKT & GODZINY ================= -->
-        <section class="contact section-padding" id="contact">
-            <div class="container gs-reveal">
-                <h2 class="section-heading">Kontakt i rezerwacje</h2>
+        <!-- SEKCJA: USŁUGI (W stylu karty z menu) -->
+        <section class="services section-padding">
+            <div class="container services-container gs-reveal-up">
+                <div class="services-header">
+                    <h2 class="section-title">Usługi <em>&</em> Cennik</h2>
+                    <p class="body-text">Każda usługa obejmuje spersonalizowaną konsultację, rytuał mycia z masażem oraz perfekcyjną stylizację końcową.</p>
+                </div>
                 
-                <div class="contact-wrapper">
-                    <!-- Dane kontaktowe -->
-                    <div class="contact-info">
-                        <h3>Odwiedź nas</h3>
-                        <p>ul. Przykładowa 12/3<br>00-001 Warszawa</p>
-                        <a href="tel:+48123456789" class="contact-phone">+48 123 456 789</a>
-                        <a href="mailto:hello@salonpremium.pl" class="contact-email">hello@salonpremium.pl</a>
+                <div class="menu-list">
+                    <!-- Pozycja 1 -->
+                    <div class="menu-item">
+                        <div class="menu-info">
+                            <h3 class="menu-name">Kształt / Strzyżenie Damskie</h3>
+                            <p class="menu-desc">Precyzyjna architektura cięcia, dopasowana do naturalnego ułożenia włosa.</p>
+                        </div>
+                        <div class="menu-line"></div>
+                        <div class="menu-price">od 250 PLN</div>
                     </div>
                     
-                    <!-- Godziny otwarcia -->
-                    <div class="contact-hours">
-                        <h3>Godziny Otwarcia</h3>
-                        <ul class="hours-list">
-                            <li><span>Poniedziałek - Piątek</span> <span>09:00 - 20:00</span></li>
-                            <li><span>Sobota</span> <span>09:00 - 15:00</span></li>
-                            <li><span class="muted-text">Niedziela</span> <span class="muted-text">Zamknięte</span></li>
-                        </ul>
+                    <!-- Pozycja 2 -->
+                    <div class="menu-item">
+                        <div class="menu-info">
+                            <h3 class="menu-name">Koloryzacja Wielowymiarowa</h3>
+                            <p class="menu-desc">AirTouch, Balayage, Sombre. Bezpieczne przejścia z ochroną wiązań.</p>
+                        </div>
+                        <div class="menu-line"></div>
+                        <div class="menu-price">od 450 PLN</div>
+                    </div>
+                    
+                    <!-- Pozycja 3 -->
+                    <div class="menu-item">
+                        <div class="menu-info">
+                            <h3 class="menu-name">Pielęgnacja Rytualna (SPA)</h3>
+                            <p class="menu-desc">Głęboka rekonstrukcja i nawilżenie w oparciu o autorskie mieszanki botaniczne.</p>
+                        </div>
+                        <div class="menu-line"></div>
+                        <div class="menu-price">300 PLN</div>
+                    </div>
+                </div>
+                
+                <div class="services-footer">
+                    <a href="#" class="btn-outline">Pełne menu na Booksy</a>
+                </div>
+            </div>
+        </section>
+
+        <!-- SEKCJA: KONTAKT -->
+        <section class="contact section-padding">
+            <div class="container contact-grid gs-reveal-up">
+                <div class="contact-details">
+                    <h2 class="section-title">Odwiedź <em>nas</em></h2>
+                    <address class="contact-address">
+                        ul. Piękna 12, Lokal 3<br>
+                        00-549 Warszawa
+                    </address>
+                    <a href="tel:+48123456789" class="contact-link">+48 123 456 789</a>
+                    <a href="mailto:atelier@premium.pl" class="contact-link">atelier@premium.pl</a>
+                </div>
+                
+                <div class="contact-hours">
+                    <div class="hours-row">
+                        <span class="day">Poniedziałek — Piątek</span>
+                        <span class="time">09:00 — 20:00</span>
+                    </div>
+                    <div class="hours-row">
+                        <span class="day">Sobota</span>
+                        <span class="time">09:00 — 16:00</span>
+                    </div>
+                    <div class="hours-row">
+                        <span class="day">Niedziela</span>
+                        <span class="time">Zamknięte</span>
                     </div>
                 </div>
             </div>
         </section>
     </main>
 
-    <!-- ================= KROK 6: STOPKA ================= -->
+    <!-- STOPKA -->
     <footer class="footer">
-        <div class="container footer-content">
-            <div class="copyright">
-                &copy; 2024 Salon Premium. Wszelkie prawa zastrzeżone.
-            </div>
-            
-            <div class="social-links">
-                <a href="#" aria-label="Instagram" class="social-icon">
-                    <svg viewBox="0 0 24 24" width="22" height="22" stroke="currentColor" stroke-width="1.5" fill="none" stroke-linecap="round" stroke-linejoin="round">
-                        <rect x="2" y="2" width="20" height="20" rx="5" ry="5"></rect>
-                        <path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"></path>
-                        <line x1="17.5" y1="6.5" x2="17.51" y2="6.5"></line>
-                    </svg>
-                </a>
-                <a href="#" aria-label="Facebook" class="social-icon">
-                    <svg viewBox="0 0 24 24" width="22" height="22" stroke="currentColor" stroke-width="1.5" fill="none" stroke-linecap="round" stroke-linejoin="round">
-                        <path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"></path>
-                    </svg>
-                </a>
+        <div class="container footer-inner">
+            <span class="copyright">© 2024 Atelier. All rights reserved.</span>
+            <div class="socials">
+                <a href="#">Instagram</a>
+                <a href="#">Facebook</a>
             </div>
         </div>
     </footer>
 
-    <!-- GSAP i ScrollTrigger -->
+    <!-- Biblioteki -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
     <script src="script.js"></script>
