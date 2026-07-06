@@ -117,34 +117,30 @@ body, html {
     color: var(--accent-sand);
 }
 
-/* LIŚCIE Z INTERNETU (Ułożenie + Trik usunięcia tła) */
+/* LIŚCIE VEKTOROWE Z CSS (SVG DATA URI) */
 .jungle-leaf {
     position: absolute;
     z-index: 5;
     pointer-events: none; 
-    
-    /* MAGIA: Zostawia zielony liść, a czarne tło ze zdjęcia wtapia w tło strony */
-    mix-blend-mode: lighten;
-    
-    opacity: 0.8;
-    filter: brightness(0.8) contrast(1.1); 
-    border-radius: 50%; /* Zaokrąglenie ukrywa ewentualne ostre krawędzie zdjęć */
+    opacity: 0.9;
+    filter: drop-shadow(0 15px 30px rgba(0,0,0,0.7)); /* Głębia 3D liści */
 }
 
+/* Kąty, skale i ułożenie rogów */
 .leaf-1 {
-    top: -15%;
+    top: -5%;
     left: -10%;
     width: 35vw;
     min-width: 300px;
-    transform: rotate(25deg);
+    transform: rotate(115deg);
 }
 
 .leaf-2 {
-    top: -20%;
+    top: -5%;
     right: -10%;
     width: 30vw;
     min-width: 250px;
-    transform: rotate(-15deg) scaleX(-1);
+    transform: rotate(20deg) scaleX(-1);
 }
 
 .leaf-3 {
@@ -152,7 +148,7 @@ body, html {
     left: -10%;
     width: 40vw;
     min-width: 350px;
-    transform: rotate(15deg);
+    transform: rotate(280deg);
 }
 
 .leaf-4 {
@@ -160,7 +156,7 @@ body, html {
     right: -10%;
     width: 35vw;
     min-width: 280px;
-    transform: rotate(-25deg);
+    transform: rotate(205deg);
 }
 
 /* SEKCJA POMOCNICZA DO TESTÓW PARALAKSY */
