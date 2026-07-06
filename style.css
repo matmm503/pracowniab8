@@ -1,11 +1,14 @@
 :root {
     --bg-dark: #161a18;           
+    --bg-darker: #121513;         /* O ton ciemniejsze tło dla sekcji usług (odcięcie) */
     --primary-green: #4f6f52;     
     --accent-sand: #d7c4a5;       
     --accent-sand-hover: #e8d7bb; 
     --text-light: #f4f1eb;        
+    --text-muted: #a3a7a4;        
     
-    --font-heading: 'Cormorant Garamond', serif;
+    /* Zmodyfikowana typografia */
+    --font-heading: 'Bebas Neue', sans-serif;
     --font-body: 'Montserrat', sans-serif;
 }
 
@@ -23,7 +26,37 @@ body, html {
     overflow-x: hidden; 
 }
 
-/* PRELOADER */
+/* WSPÓLNE KLASY DLA NOWYCH SEKCJI */
+.container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 20px;
+}
+
+.section-padding {
+    padding: 120px 0;
+}
+
+.bg-darker {
+    background-color: var(--bg-darker);
+}
+
+.text-center {
+    text-align: center;
+}
+
+.section-heading {
+    font-family: var(--font-heading);
+    font-size: clamp(2.5rem, 5vw, 4rem);
+    color: var(--accent-sand);
+    text-align: center;
+    margin-bottom: 60px;
+    letter-spacing: 4px; /* Eleganckie rozstrzelenie liter */
+}
+
+/* ---------------------------------
+   PRELOADER
+-----------------------------------*/
 .preloader {
     position: fixed;
     top: 0;
@@ -57,10 +90,11 @@ body, html {
     width: 0%;
     height: 100%;
     background-color: var(--accent-sand);
-    border-radius: 2px;
 }
 
-/* SEKCJA HERO */
+/* ---------------------------------
+   SEKCJA HERO
+-----------------------------------*/
 .hero {
     position: relative;
     width: 100%;
@@ -81,15 +115,15 @@ body, html {
 
 .hero-title {
     font-family: var(--font-heading);
-    font-size: clamp(3rem, 5vw, 5.5rem);
-    font-weight: 400;
+    font-size: clamp(4rem, 8vw, 7rem);
     color: var(--accent-sand);
-    line-height: 1.1;
+    line-height: 1;
     margin-bottom: 20px;
+    letter-spacing: 5px; 
 }
 
 .hero-subtitle {
-    font-size: clamp(1rem, 1.5vw, 1.2rem);
+    font-size: clamp(1rem, 1.5vw, 1.1rem);
     font-weight: 300;
     line-height: 1.6;
     margin-bottom: 40px;
@@ -97,9 +131,11 @@ body, html {
     opacity: 0.9;
 }
 
+/* Przycisk CTA */
 .btn-primary {
     display: inline-block;
-    padding: 16px 36px;
+    padding: 18px 40px;
+    font-family: var(--font-body);
     font-size: 0.9rem;
     font-weight: 500;
     text-transform: uppercase;
@@ -107,7 +143,6 @@ body, html {
     color: var(--bg-dark);
     background-color: var(--accent-sand);
     text-decoration: none;
-    border-radius: 0; 
     transition: all 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
     border: 1px solid var(--accent-sand);
 }
@@ -117,61 +152,177 @@ body, html {
     color: var(--accent-sand);
 }
 
-/* LIŚCIE VEKTOROWE Z CSS (SVG DATA URI) */
+/* LIŚCIE W HERO */
 .jungle-leaf {
     position: absolute;
     z-index: 5;
     pointer-events: none; 
     opacity: 0.9;
-    filter: drop-shadow(0 15px 30px rgba(0,0,0,0.7)); /* Głębia 3D liści */
+    filter: drop-shadow(0 15px 30px rgba(0,0,0,0.7)); 
 }
 
-/* Kąty, skale i ułożenie rogów */
-.leaf-1 {
-    top: -5%;
-    left: -10%;
-    width: 35vw;
-    min-width: 300px;
-    transform: rotate(115deg);
+.leaf-1 { top: -5%; left: -10%; width: 35vw; min-width: 300px; transform: rotate(115deg); }
+.leaf-2 { top: -5%; right: -10%; width: 30vw; min-width: 250px; transform: rotate(20deg) scaleX(-1); }
+.leaf-3 { bottom: -15%; left: -10%; width: 40vw; min-width: 350px; transform: rotate(280deg); }
+.leaf-4 { bottom: -10%; right: -10%; width: 35vw; min-width: 280px; transform: rotate(205deg); }
+
+/* ---------------------------------
+   O PRACOWNI
+-----------------------------------*/
+.about-text {
+    max-width: 800px;
+    margin: 0 auto;
+    text-align: center;
+    font-size: 1.1rem;
+    line-height: 1.8;
+    font-weight: 300;
+    color: var(--text-light);
 }
 
-.leaf-2 {
-    top: -5%;
-    right: -10%;
-    width: 30vw;
-    min-width: 250px;
-    transform: rotate(20deg) scaleX(-1);
+/* ---------------------------------
+   USŁUGI (KAFELKI)
+-----------------------------------*/
+.services-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 30px;
 }
 
-.leaf-3 {
-    bottom: -15%;
-    left: -10%;
-    width: 40vw;
-    min-width: 350px;
-    transform: rotate(280deg);
-}
-
-.leaf-4 {
-    bottom: -10%;
-    right: -10%;
-    width: 35vw;
-    min-width: 280px;
-    transform: rotate(205deg);
-}
-
-/* SEKCJA POMOCNICZA DO TESTÓW PARALAKSY */
-.spacer {
-    height: 100vh;
-    display: flex;
-    justify-content: center;
-    align-items: center;
+.service-card {
     background-color: var(--bg-dark);
-    border-top: 1px solid rgba(215, 196, 165, 0.2);
+    border: 1px solid rgba(215, 196, 165, 0.15);
+    padding: 50px 30px;
+    text-align: center;
+    transition: transform 0.4s ease, border-color 0.4s ease;
 }
 
-.spacer h2 {
+.service-card:hover {
+    transform: translateY(-10px);
+    border-color: var(--accent-sand);
+}
+
+.service-title {
     font-family: var(--font-heading);
-    color: var(--primary-green);
-    font-size: 2rem;
-    font-weight: 400;
+    font-size: 2.2rem;
+    color: var(--accent-sand);
+    margin-bottom: 15px;
+    letter-spacing: 2px;
+}
+
+.service-price {
+    font-size: 1.2rem;
+    font-weight: 500;
+    color: var(--text-light);
+    margin-bottom: 25px;
+    padding-bottom: 15px;
+    border-bottom: 1px solid rgba(215, 196, 165, 0.3);
+}
+
+.service-desc {
+    font-size: 0.95rem;
+    line-height: 1.6;
+    font-weight: 300;
+    color: var(--text-muted);
+}
+
+/* ---------------------------------
+   KONTAKT I GODZINY
+-----------------------------------*/
+.contact-wrapper {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 50px;
+    justify-content: center;
+}
+
+.contact-info, .contact-hours {
+    flex: 1;
+    min-width: 300px;
+    max-width: 500px;
+    padding: 40px;
+    background-color: var(--bg-darker);
+    border-left: 2px solid var(--accent-sand);
+}
+
+.contact-info h3, .contact-hours h3 {
+    font-family: var(--font-heading);
+    font-size: 2.2rem;
+    color: var(--accent-sand);
+    letter-spacing: 2px;
+    margin-bottom: 25px;
+}
+
+.contact-info p {
+    font-weight: 300;
+    line-height: 1.8;
+    margin-bottom: 15px;
+}
+
+.contact-phone {
+    font-size: 1.4rem;
+    font-weight: 500 !important;
+    color: var(--accent-sand);
+}
+
+.hours-list {
+    list-style: none;
+}
+
+.hours-list li {
+    display: flex;
+    justify-content: space-between;
+    padding: 12px 0;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+    font-weight: 300;
+}
+
+.hours-list li:last-child {
+    border-bottom: none;
+}
+
+/* ---------------------------------
+   STOPKA (FOOTER)
+-----------------------------------*/
+.footer {
+    background-color: #0d100e; /* Najciemniejszy kolor na dnie */
+    padding: 30px 0;
+    border-top: 1px solid rgba(215, 196, 165, 0.1);
+}
+
+.footer-content {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 20px;
+}
+
+.copyright {
+    font-size: 0.85rem;
+    color: var(--text-muted);
+    font-weight: 300;
+}
+
+.social-links {
+    display: flex;
+    gap: 15px;
+}
+
+.social-icon {
+    color: var(--accent-sand);
+    transition: color 0.3s ease, transform 0.3s ease;
+}
+
+.social-icon:hover {
+    color: var(--text-light);
+    transform: scale(1.1);
+}
+
+/* ---------------------------------
+   RESPONSYWNOŚĆ (MEDIA QUERIES)
+-----------------------------------*/
+@media (max-width: 768px) {
+    .section-padding { padding: 80px 0; }
+    .hero-title { letter-spacing: 3px; }
+    .footer-content { justify-content: center; text-align: center; }
 }
