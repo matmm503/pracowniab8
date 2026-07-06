@@ -1,87 +1,68 @@
-// Rejestracja wtyczki ScrollTrigger do obserwowania przewijania strony
 gsap.registerPlugin(ScrollTrigger);
 
-// Główny strumień czasowy animacji startowych
+// Ukrywamy elementy przed animacją by nie "mrugały" na ekranie
+gsap.set([".gs-reveal-hero", ".gs-reveal-nav", ".gs-reveal-up"], { opacity: 0, y: 30 });
+gsap.set(".hero-image", { scale: 1.15 }); // Zdjęcie delikatnie powiększone na start
+
 const mainTimeline = gsap.timeline();
 
-// 1. ANIMACJA Paska Postępu PRELOADERA (Wymuszenie 1.5 sekundy)
-mainTimeline.to(".progress-bar", {
+// 1. ŁADOWANIE PRELOADERA
+mainTimeline.to(".progress-line-inner", {
     width: "100%",
-    duration: 1.5,
+    duration: 1.8,
     ease: "power2.inOut"
 })
-// 2. Łagodne zanikanie preloadera
+// 2. ROZMYCIE I ZANIK PRELOADERA
 .to(".preloader", {
     opacity: 0,
-    duration: 0.8,
+    duration: 1.2,
     ease: "power2.inOut",
     onComplete: () => {
-        // Usuwamy preloader z warstwy wizualnej by nie blokował kliknięć
         document.querySelector(".preloader").style.display = "none";
-        
-        // Zabezpieczenie: pokazujemy ukryte domyślnie sekcje .gs-reveal 
-        // by upewnić się, że zadziała ScrollTrigger
-        gsap.set(".gs-reveal", { visibility: "visible" });
     }
 })
+// 3. EFEKT KENA BURNSA NA TLE (bardzo powolne oddalenie tła)
+.to(".hero-image", {
+    scale: 1,
+    duration: 4,
+    ease: "power2.out"
+}, "-=0.8") // Zaczyna się lekko przed końcem znikania preloadera
+// 4. ANIMACJA TEKSTÓW W HERO
+.to([".gs-reveal-nav", ".gs-reveal-hero"], {
+    y: 0,
+    opacity: 1,
+    duration: 1.5,
+    stagger: 0.15,
+    ease: "power3.out"
+}, "-=3.5");
 
-// 3. Wjazd Liści
-.fromTo(".jungle-leaf", 
-    { scale: 0.8, opacity: 0 },
-    { scale: 1, opacity: 0.9, duration: 1.5, stagger: 0.1, ease: "power3.out" },
-    "-=0.4" // Startuje przed całkowitym zniknięciem preloadera
-)
+// ================= ANIMACJE PRZY SCROLLOWANIU =================
+// Każda sekcja będzie elegancko i powoli wypływać od dołu
+const scrollElements = document.querySelectorAll('.gs-reveal-up');
 
-// 4. Animacja elementów Tekstowych Sekcji HERO
-.fromTo([".hero-title", ".hero-subtitle", ".btn-primary", ".scroll-indicator"], 
-    { y: 50, opacity: 0 },
-    { y: 0, opacity: 1, duration: 1.2, stagger: 0.15, ease: "power3.out" },
-    "-=1.2" // Nakłada się na animację liści
-);
-
-
-// ================= EFEKT PARALAKSY LIŚCI =================
-// Każdy liść porusza się w innej osi lub tempie, dając głębię w 3D.
-gsap.to(".leaf-1", {
-    y: -180, x: -40, ease: "none",
-    scrollTrigger: { trigger: ".hero", start: "top top", end: "bottom top", scrub: 1 }
-});
-
-gsap.to(".leaf-2", {
-    y: -250, x: 60, rotation: 30, ease: "none",
-    scrollTrigger: { trigger: ".hero", start: "top top", end: "bottom top", scrub: 1 }
-});
-
-gsap.to(".leaf-3", {
-    y: -100, x: -30, ease: "none",
-    scrollTrigger: { trigger: ".hero", start: "top top", end: "bottom top", scrub: 1 }
-});
-
-gsap.to(".leaf-4", {
-    y: -200, x: 50, rotation: 180, ease: "none",
-    scrollTrigger: { trigger: ".hero", start: "top top", end: "bottom top", scrub: 1 }
-});
-
-
-// ================= FADE UP (POJAWIANIE SIĘ SEKCJI W DOLE STRONY) =================
-const revealElements = document.querySelectorAll('.gs-reveal');
-
-revealElements.forEach((elem) => {
-    gsap.fromTo(elem, 
-        { 
-            y: 50, 
-            opacity: 0 
-        }, 
-        { 
-            y: 0, 
-            opacity: 1, 
-            duration: 1.2, 
-            ease: "power3.out",
-            scrollTrigger: {
-                trigger: elem,
-                start: "top 85%", // Sekcja ładuje się, gdy jej góra wejdzie w 85% widoczności ekranu
-                toggleActions: "play none none reverse" // Jeśli przescrollujesz do góry, znowu się ukryje by powtórzyć efekt
-            }
+scrollElements.forEach((elem) => {
+    gsap.to(elem, {
+        y: 0,
+        opacity: 1,
+        duration: 1.5,
+        ease: "power2.out",
+        scrollTrigger: {
+            trigger: elem,
+            start: "top 85%", // Aktywacja, gdy góra elementu jest w 85% ekranu
+            toggleActions: "play none none none" // Odpala się raz i zostaje
         }
-    );
+    });
+});
+
+// ================= PARALAKSA ZDJĘCIA O PRACOWNI =================
+// Zdjęcie będzie się delikatnie przesuwać wewnątrz swojego kontenera podczas scrolla
+gsap.to(".about-image", {
+    y: 50,
+    ease: "none",
+    scrollTrigger: {
+        trigger: ".about-image-wrapper",
+        start: "top bottom",
+        end: "bottom top",
+        scrub: true
+    }
 });
