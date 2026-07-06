@@ -1,16 +1,14 @@
-/* Zmienne CSS określające paletę barw premium */
 :root {
-    --bg-dark: #161a18;           /* Bardzo ciemny grafit wpadający w zieleń */
-    --primary-green: #4f6f52;     /* Zgaszona zieleń */
-    --accent-sand: #d7c4a5;       /* Piaskowy/złoty beż */
-    --accent-sand-hover: #e8d7bb; /* Jaśniejszy beż na hover */
-    --text-light: #f4f1eb;        /* Bardzo jasny beżowy biały */
+    --bg-dark: #161a18;           
+    --primary-green: #4f6f52;     
+    --accent-sand: #d7c4a5;       
+    --accent-sand-hover: #e8d7bb; 
+    --text-light: #f4f1eb;        
     
     --font-heading: 'Cormorant Garamond', serif;
     --font-body: 'Montserrat', sans-serif;
 }
 
-/* Reset systemowy dla czystej karty */
 * {
     margin: 0;
     padding: 0;
@@ -22,12 +20,10 @@ body, html {
     background-color: var(--bg-dark);
     color: var(--text-light);
     font-family: var(--font-body);
-    overflow-x: hidden; /* Ukrywamy poziomy pasek przewijania */
+    overflow-x: hidden; 
 }
 
-/* ---------------------------------
-   PRELOADER
------------------------------------*/
+/* PRELOADER */
 .preloader {
     position: fixed;
     top: 0;
@@ -44,16 +40,15 @@ body, html {
 }
 
 .preloader-logo {
-    width: 150px; /* Dostosuj w zależności od proporcji logo */
+    width: 250px; 
     height: auto;
     object-fit: contain;
 }
 
-/* Pasek ładowania */
 .progress-container {
     width: 200px;
     height: 2px;
-    background-color: rgba(215, 196, 165, 0.2); /* Przezroczysty beż */
+    background-color: rgba(215, 196, 165, 0.2); 
     border-radius: 2px;
     overflow: hidden;
 }
@@ -65,9 +60,7 @@ body, html {
     border-radius: 2px;
 }
 
-/* ---------------------------------
-   SEKCJA HERO
------------------------------------*/
+/* SEKCJA HERO */
 .hero {
     position: relative;
     width: 100%;
@@ -75,10 +68,9 @@ body, html {
     display: flex;
     justify-content: center;
     align-items: center;
-    overflow: hidden; /* Utrzymuje liście w ryzach */
+    overflow: hidden; 
 }
 
-/* Zawartość centralna */
 .hero-content {
     position: relative;
     z-index: 10;
@@ -89,7 +81,7 @@ body, html {
 
 .hero-title {
     font-family: var(--font-heading);
-    font-size: clamp(3rem, 5vw, 5rem);
+    font-size: clamp(3rem, 5vw, 5.5rem);
     font-weight: 400;
     color: var(--accent-sand);
     line-height: 1.1;
@@ -105,7 +97,6 @@ body, html {
     opacity: 0.9;
 }
 
-/* Przycisk CTA premium */
 .btn-primary {
     display: inline-block;
     padding: 16px 36px;
@@ -116,7 +107,7 @@ body, html {
     color: var(--bg-dark);
     background-color: var(--accent-sand);
     text-decoration: none;
-    border-radius: 0; /* Ostre krawędzie = elegancja */
+    border-radius: 0; 
     transition: all 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
     border: 1px solid var(--accent-sand);
 }
@@ -126,60 +117,60 @@ body, html {
     color: var(--accent-sand);
 }
 
-/* ---------------------------------
-   LIŚCIE (Absolutne pozycjonowanie)
------------------------------------*/
+/* LIŚCIE Z INTERNETU (Ułożenie + Trik usunięcia tła) */
 .jungle-leaf {
     position: absolute;
     z-index: 5;
-    pointer-events: none; /* Zapobiega blokowaniu kliknięć w przycisk */
-    opacity: 0.8;         /* Subtelność */
-    filter: brightness(0.7) drop-shadow(0 15px 25px rgba(0,0,0,0.4));
+    pointer-events: none; 
+    
+    /* MAGIA: Zostawia zielony liść, a czarne tło ze zdjęcia wtapia w tło strony */
+    mix-blend-mode: lighten;
+    
+    opacity: 0.8;
+    filter: brightness(0.8) contrast(1.1); 
+    border-radius: 50%; /* Zaokrąglenie ukrywa ewentualne ostre krawędzie zdjęć */
 }
 
-/* Ustawienie w rogach */
 .leaf-1 {
-    top: -5%;
-    left: -5%;
-    width: 30vw;
-    min-width: 200px;
-    transform: rotate(15deg);
+    top: -15%;
+    left: -10%;
+    width: 35vw;
+    min-width: 300px;
+    transform: rotate(25deg);
 }
 
 .leaf-2 {
-    top: -10%;
-    right: -5%;
-    width: 25vw;
-    min-width: 180px;
-    transform: rotate(-25deg) scaleX(-1);
+    top: -20%;
+    right: -10%;
+    width: 30vw;
+    min-width: 250px;
+    transform: rotate(-15deg) scaleX(-1);
 }
 
 .leaf-3 {
-    bottom: -10%;
-    left: -5%;
-    width: 35vw;
-    min-width: 250px;
-    transform: rotate(45deg);
+    bottom: -15%;
+    left: -10%;
+    width: 40vw;
+    min-width: 350px;
+    transform: rotate(15deg);
 }
 
 .leaf-4 {
-    bottom: -5%;
-    right: -5%;
-    width: 28vw;
-    min-width: 220px;
-    transform: rotate(-15deg);
+    bottom: -10%;
+    right: -10%;
+    width: 35vw;
+    min-width: 280px;
+    transform: rotate(-25deg);
 }
 
-/* ---------------------------------
-   SEKCJA POMOCNICZA DO TESTÓW
------------------------------------*/
+/* SEKCJA POMOCNICZA DO TESTÓW PARALAKSY */
 .spacer {
     height: 100vh;
     display: flex;
     justify-content: center;
     align-items: center;
     background-color: var(--bg-dark);
-    border-top: 1px solid var(--primary-green);
+    border-top: 1px solid rgba(215, 196, 165, 0.2);
 }
 
 .spacer h2 {
