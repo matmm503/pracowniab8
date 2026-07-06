@@ -5,24 +5,25 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Ekskluzywny Salon Fryzjerski</title>
     
+    <!-- Nowe Fonty z Google Fonts (Bebas Neue + Montserrat) -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,600;1,400&family=Montserrat:wght@300;400;500&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Montserrat:wght@300;400;500&display=swap" rel="stylesheet">
     
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
 
-    <!-- KROK 1: Preloader -->
+    <!-- PRELOADER -->
     <div class="preloader">
-        <img src="https://placehold.co/400x200/161a18/d7c4a5?text=SALON\nPREMIUM&font=playfair-display" alt="Logo Salonu" class="preloader-logo">
+        <img src="https://placehold.co/400x200/161a18/d7c4a5?text=SALON\nPREMIUM&font=montserrat" alt="Logo Salonu" class="preloader-logo">
         <div class="progress-container">
             <div class="progress-bar"></div>
         </div>
     </div>
 
-    <!-- KROK 2: Sekcja Hero -->
     <main>
+        <!-- SEKCJA HERO -->
         <section class="hero">
             <!-- Liście wbudowane jako wektorowe obiekty SVG Data URI -->
             <img src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 512 512' fill='%234f6f52'%3E%3Cpath d='M497.9,14.1c-1.9-1.9-4.4-2.9-7-2.8C451.2,12.3,360.3,19.3,268.8,84.8C174.5,152.3,87.1,236.4,51.8,318.1 c-20.7,48-25,90.5-23.8,124.9c-8.5,6.4-16.2,13.9-22.4,22c-5.8,7.7-6.5,18.4-1.8,26.9c4.7,8.4,13.9,13.4,23.6,12.7 c24.1-1.7,44.2-14.7,58.7-30.9c34.8-2.9,75.1-15.6,117.7-38C287.1,392,367.7,308.2,431.1,215c64.7-95.2,71.2-189.7,71.7-226.8 C502.8,18.2,500.5,15.7,497.9,14.1z'/%3E%3C/svg%3E" alt="Liść" class="jungle-leaf leaf-1">
@@ -30,20 +31,113 @@
             <img src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 512 512' fill='%234f6f52'%3E%3Cpath d='M497.9,14.1c-1.9-1.9-4.4-2.9-7-2.8C451.2,12.3,360.3,19.3,268.8,84.8C174.5,152.3,87.1,236.4,51.8,318.1 c-20.7,48-25,90.5-23.8,124.9c-8.5,6.4-16.2,13.9-22.4,22c-5.8,7.7-6.5,18.4-1.8,26.9c4.7,8.4,13.9,13.4,23.6,12.7 c24.1-1.7,44.2-14.7,58.7-30.9c34.8-2.9,75.1-15.6,117.7-38C287.1,392,367.7,308.2,431.1,215c64.7-95.2,71.2-189.7,71.7-226.8 C502.8,18.2,500.5,15.7,497.9,14.1z'/%3E%3C/svg%3E" alt="Liść" class="jungle-leaf leaf-3">
             <img src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 512 512' fill='%234f6f52'%3E%3Cpath d='M497.9,14.1c-1.9-1.9-4.4-2.9-7-2.8C451.2,12.3,360.3,19.3,268.8,84.8C174.5,152.3,87.1,236.4,51.8,318.1 c-20.7,48-25,90.5-23.8,124.9c-8.5,6.4-16.2,13.9-22.4,22c-5.8,7.7-6.5,18.4-1.8,26.9c4.7,8.4,13.9,13.4,23.6,12.7 c24.1-1.7,44.2-14.7,58.7-30.9c34.8-2.9,75.1-15.6,117.7-38C287.1,392,367.7,308.2,431.1,215c64.7-95.2,71.2-189.7,71.7-226.8 C502.8,18.2,500.5,15.7,497.9,14.1z'/%3E%3C/svg%3E" alt="Liść" class="jungle-leaf leaf-4">
 
-            <!-- Główna zawartość -->
             <div class="hero-content">
                 <h1 class="hero-title">Odkryj swoje piękno na nowo</h1>
                 <p class="hero-subtitle">Ekskluzywne doświadczenie dla Twoich włosów. <br>Harmonia natury i nowoczesnego luksusu.</p>
+                <!-- Klikalny przycisk z linkiem -->
                 <a href="#" class="btn-primary">Zarezerwuj wizytę (Booksy)</a>
             </div>
         </section>
 
-        <!-- Sekcja pomocnicza do testów zjeżdżania w dół -->
-        <section class="spacer">
-            <h2>Przewijaj dalej, aby doświadczyć harmonii...</h2>
+        <!-- SEKCJA: O PRACOWNI -->
+        <section class="about section-padding">
+            <div class="container gs-reveal">
+                <h2 class="section-heading">O Pracowni</h2>
+                <p class="about-text">
+                    Stworzyliśmy to miejsce z myślą o osobach ceniących najwyższą jakość i chwilę wytchnienia. W naszej pracowni fryzjerstwo to sztuka, a każde cięcie czy koloryzacja jest procesem projektowanym indywidualnie. Używamy wyłącznie organicznych, starannie wyselekcjonowanych produktów, by dbać nie tylko o wygląd, ale i zdrowie Twoich włosów.
+                </p>
+            </div>
+        </section>
+
+        <!-- SEKCJA: USŁUGI / CENNIK -->
+        <section class="services section-padding bg-darker">
+            <div class="container">
+                <h2 class="section-heading gs-reveal">Nasze Usługi</h2>
+                
+                <div class="services-grid">
+                    <!-- Usługa 1 -->
+                    <div class="service-card gs-reveal">
+                        <h3 class="service-title">Strzyżenie Damskie</h3>
+                        <p class="service-price">150 - 250 PLN</p>
+                        <p class="service-desc">Precyzyjne cięcie dopasowane do kształtu twarzy i struktury włosa, obejmujące mycie, masaż głowy oraz stylizację końcową.</p>
+                    </div>
+                    
+                    <!-- Usługa 2 -->
+                    <div class="service-card gs-reveal">
+                        <h3 class="service-title">Koloryzacja Premium</h3>
+                        <p class="service-price">od 350 PLN</p>
+                        <p class="service-desc">Wieloetapowa, bezpieczna koloryzacja (m.in. AirTouch, Sombre, Balayage) z użyciem produktów chroniących wiązania we włosach.</p>
+                    </div>
+                    
+                    <!-- Usługa 3 -->
+                    <div class="service-card gs-reveal">
+                        <h3 class="service-title">Pielęgnacja Rytualna</h3>
+                        <p class="service-price">200 PLN</p>
+                        <p class="service-desc">Głęboko odżywcza kuracja SPA dopasowana do potrzeb skóry głowy i łodygi włosa. Odbudowa, nawilżenie i relaks.</p>
+                    </div>
+                </div>
+                
+                <div class="text-center gs-reveal" style="margin-top: 50px;">
+                    <a href="#" class="btn-primary">Sprawdź pełny cennik na Booksy</a>
+                </div>
+            </div>
+        </section>
+
+        <!-- SEKCJA: KONTAKT & GODZINY OTWARCIA -->
+        <section class="contact section-padding">
+            <div class="container gs-reveal">
+                <h2 class="section-heading">Kontakt</h2>
+                
+                <div class="contact-wrapper">
+                    <!-- Dane kontaktowe -->
+                    <div class="contact-info">
+                        <h3>Odwiedź nas</h3>
+                        <p>ul. Przykładowa 12/3<br>00-001 Warszawa</p>
+                        <p class="contact-phone">+48 123 456 789</p>
+                        <p class="contact-email">hello@salonpremium.pl</p>
+                    </div>
+                    
+                    <!-- Godziny otwarcia -->
+                    <div class="contact-hours">
+                        <h3>Godziny Otwarcia</h3>
+                        <ul class="hours-list">
+                            <li><span>Poniedziałek - Piątek</span> <span>09:00 - 20:00</span></li>
+                            <li><span>Sobota</span> <span>09:00 - 15:00</span></li>
+                            <li><span>Niedziela</span> <span>Zamknięte</span></li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
         </section>
     </main>
 
+    <!-- STOPKA -->
+    <footer class="footer">
+        <div class="container footer-content">
+            <div class="copyright">
+                &copy; 2024 Salon Premium. Wszelkie prawa zastrzeżone.
+            </div>
+            
+            <div class="social-links">
+                <!-- Ikona Instagrama (SVG) -->
+                <a href="#" aria-label="Instagram" class="social-icon">
+                    <svg viewBox="0 0 24 24" width="24" height="24" stroke="currentColor" stroke-width="1.5" fill="none" stroke-linecap="round" stroke-linejoin="round">
+                        <rect x="2" y="2" width="20" height="20" rx="5" ry="5"></rect>
+                        <path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"></path>
+                        <line x1="17.5" y1="6.5" x2="17.51" y2="6.5"></line>
+                    </svg>
+                </a>
+                <!-- Ikona Facebooka (SVG) -->
+                <a href="#" aria-label="Facebook" class="social-icon">
+                    <svg viewBox="0 0 24 24" width="24" height="24" stroke="currentColor" stroke-width="1.5" fill="none" stroke-linecap="round" stroke-linejoin="round">
+                        <path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"></path>
+                    </svg>
+                </a>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Biblioteki GSAP -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
     <script src="script.js"></script>
