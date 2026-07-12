@@ -80,42 +80,110 @@
   /* NAV */
   .navbar{
     position: fixed;
-    top: 20px;
-    left: 50%;
-    transform: translateX(-50%);
+    top: 0;
+    left: 0;
+    width: 100%;
     z-index: 1000;
-    width: calc(100% - 48px);
+    background: rgba(19,34,27,0.42);
+    backdrop-filter: blur(18px);
+    -webkit-backdrop-filter: blur(18px);
+    border-bottom: 1px solid rgba(255,255,255,0.08);
+    transition: background 0.35s ease, box-shadow 0.35s ease, padding 0.35s ease;
+  }
+
+  .navbar.scrolled{
+    background: rgba(15,28,22,0.85);
+    box-shadow: 0 12px 30px rgba(0,0,0,0.18);
+  }
+
+  .nav-inner{
     max-width: 1180px;
+    margin: 0 auto;
+    padding: 20px 24px;
     display:flex;
     align-items:center;
     justify-content: space-between;
-    padding: 14px 28px;
+    transition: padding 0.35s ease;
   }
+
+  .navbar.scrolled .nav-inner{ padding: 14px 24px; }
 
   .nav-logo{
     font-family: 'Cormorant Garamond', serif;
-    font-size: 1.4rem;
+    font-size: 1.45rem;
     font-weight: 700;
-    color: var(--bottle-green);
+    color: #f5efe4;
     letter-spacing: 1px;
   }
 
+  .nav-logo span{ color: var(--sand-gold-light); }
+
   .nav-links{
     display:flex;
-    gap: 28px;
+    align-items:center;
+    gap: 34px;
     list-style:none;
   }
 
   .nav-links a{
     font-size: 0.9rem;
     font-weight: 500;
-    color: var(--ink);
+    color: #f0ece2;
     transition: color 0.25s ease;
+    position: relative;
+    padding-bottom: 3px;
   }
 
-  .nav-links a:hover{ color: var(--bottle-green); }
+  .nav-links a::after{
+    content:'';
+    position:absolute;
+    left:0; bottom:0;
+    width:0;
+    height:1px;
+    background: var(--sand-gold-light);
+    transition: width 0.3s ease;
+  }
 
-  .nav-toggle{ display:none; }
+  .nav-links a:hover{ color: #ffffff; }
+  .nav-links a:hover::after{ width:100%; }
+
+  .nav-toggle{
+    display:none;
+    background:none;
+    border:none;
+    cursor:pointer;
+    z-index: 1002;
+    width: 28px;
+    height: 20px;
+    flex-direction: column;
+    justify-content: space-between;
+    padding: 0;
+  }
+
+  .nav-toggle span{
+    display:block;
+    width:100%;
+    height:2px;
+    background:#f5efe4;
+    border-radius:2px;
+    transition: transform 0.35s ease, opacity 0.35s ease;
+  }
+
+  .nav-toggle.active span:nth-child(1){ transform: translateY(9px) rotate(45deg); }
+  .nav-toggle.active span:nth-child(2){ opacity:0; }
+  .nav-toggle.active span:nth-child(3){ transform: translateY(-9px) rotate(-45deg); }
+
+  .nav-overlay{
+    position: fixed;
+    inset: 0;
+    background: rgba(0,0,0,0.45);
+    opacity: 0;
+    visibility: hidden;
+    transition: opacity 0.35s ease, visibility 0.35s ease;
+    z-index: 999;
+  }
+
+  .nav-overlay.active{ opacity:1; visibility:visible; }
 
   /* HERO */
   .hero{
@@ -127,7 +195,7 @@
     justify-content:center;
     background:
       linear-gradient(rgba(0,0,0,0.45), rgba(0,0,0,0.45)),
-      url('hero-bg.png');
+      url('assets/hero-bg.jpg');
     background-size: cover;
     background-position: center;
     background-repeat: no-repeat;
@@ -613,35 +681,28 @@
     section{ padding: 80px 0; }
     .nav-links{
       position: fixed;
-      top: 0; right: 0;
+      top: 0; left: 0;
       height: 100vh;
-      width: 70%;
-      background: var(--glass-bg-strong);
+      width: min(78vw, 320px);
+      background: rgba(15,28,22,0.94);
       backdrop-filter: blur(20px);
+      -webkit-backdrop-filter: blur(20px);
       flex-direction: column;
       justify-content:center;
       align-items:center;
-      gap: 32px;
-      transform: translateX(100%);
-      transition: transform 0.4s ease;
-      border-left: 1px solid var(--glass-border);
+      gap: 34px;
+      transform: translateX(-100%);
+      visibility: hidden;
+      transition: transform 0.45s cubic-bezier(.77,0,.18,1), visibility 0s linear 0.45s;
+      border-right: 1px solid rgba(255,255,255,0.08);
     }
-    .nav-links.open{ transform: translateX(0); }
-    .nav-toggle{
-      display:flex;
-      flex-direction: column;
-      gap: 5px;
-      cursor:pointer;
-      z-index: 1001;
-      background:none;
-      border:none;
+    .nav-links.open{
+      transform: translateX(0);
+      visibility: visible;
+      transition: transform 0.45s cubic-bezier(.77,0,.18,1), visibility 0s linear 0s;
     }
-    .nav-toggle span{
-      width: 24px;
-      height: 2px;
-      background: var(--bottle-green);
-      display:block;
-    }
+    .nav-links a{ font-size: 1.05rem; }
+    .nav-toggle{ display:flex; }
     .services-grid{ grid-template-columns: 1fr; }
     .team-grid{ grid-template-columns: 1fr; }
     .gallery-grid{ grid-template-columns: repeat(2, 1fr); grid-auto-rows: 180px; }
@@ -655,24 +716,27 @@
 </head>
 <body>
 
-<nav class="navbar glass">
-  <div class="nav-logo">Pracownia B8</div>
-  <button class="nav-toggle" id="navToggle" aria-label="Otwórz menu">
-    <span></span><span></span><span></span>
-  </button>
-  <ul class="nav-links" id="navLinks">
-    <li><a href="#onas">O nas</a></li>
-    <li><a href="#uslugi">Usługi</a></li>
-    <li><a href="#zespol">Zespół</a></li>
-    <li><a href="#nashi">Nashi</a></li>
-    <li><a href="#galeria">Galeria</a></li>
-    <li><a href="#rezerwacja">Rezerwacja</a></li>
-  </ul>
+<nav class="navbar" id="navbar">
+  <div class="nav-inner container">
+    <a href="#top" class="nav-logo">Pracownia <span>B8</span></a>
+    <ul class="nav-links" id="navLinks">
+      <li><a href="#onas">O nas</a></li>
+      <li><a href="#uslugi">Usługi</a></li>
+      <li><a href="#zespol">Zespół</a></li>
+      <li><a href="#nashi">Nashi</a></li>
+      <li><a href="#galeria">Galeria</a></li>
+      <li><a href="#rezerwacja">Rezerwacja</a></li>
+    </ul>
+    <button class="nav-toggle" id="navToggle" aria-label="Otwórz menu">
+      <span></span><span></span><span></span>
+    </button>
+  </div>
 </nav>
+<div class="nav-overlay" id="navOverlay"></div>
 
 <!-- HERO -->
 <header class="hero" id="top">
-  <img src="logo.png" alt="Pracownia B8 - Hair &amp; Beauty" class="hero-logo">
+  <img src="assets/logo.png" alt="Pracownia B8 - Hair &amp; Beauty" class="hero-logo">
   <div class="hero-scroll">
     <span>Przewiń</span>
     <div class="line"></div>
@@ -1076,13 +1140,38 @@
 </footer>
 
 <script>
+  const navbar = document.getElementById('navbar');
   const navToggle = document.getElementById('navToggle');
   const navLinks = document.getElementById('navLinks');
+  const navOverlay = document.getElementById('navOverlay');
+
+  // Nieprzezroczysty pasek po przewinięciu strony
+  const onScroll = () => {
+    if (window.scrollY > 30) navbar.classList.add('scrolled');
+    else navbar.classList.remove('scrolled');
+  };
+  window.addEventListener('scroll', onScroll);
+  onScroll();
+
+  // Menu mobilne
+  const openMenu = () => {
+    navLinks.classList.add('open');
+    navOverlay.classList.add('active');
+    navToggle.classList.add('active');
+    document.body.style.overflow = 'hidden';
+  };
+  const closeMenu = () => {
+    navLinks.classList.remove('open');
+    navOverlay.classList.remove('active');
+    navToggle.classList.remove('active');
+    document.body.style.overflow = '';
+  };
   navToggle.addEventListener('click', () => {
-    navLinks.classList.toggle('open');
+    navLinks.classList.contains('open') ? closeMenu() : openMenu();
   });
+  navOverlay.addEventListener('click', closeMenu);
   navLinks.querySelectorAll('a').forEach(link => {
-    link.addEventListener('click', () => navLinks.classList.remove('open'));
+    link.addEventListener('click', closeMenu);
   });
 </script>
 
