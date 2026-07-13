@@ -1627,23 +1627,31 @@
     leavesLayer.style.height = `${layerHeight}px`;
   }
 
+  let resizeTimeout;
+
   if (leavesLayer) {
     // ResizeObserver wykrywa również np. rozwinięcie galerii lub innych akordeonów
     const resizeObserver = new ResizeObserver(() => {
-      updateLeavesLayerHeight();
+      clearTimeout(resizeTimeout);
+      resizeTimeout = setTimeout(updateLeavesLayerHeight, 150);
     });
     resizeObserver.observe(document.body);
-    window.addEventListener('resize', updateLeavesLayerHeight);
-    
-    // Przechwytujemy zdarzenie natywne od Lenisa
-    lenis.on('scroll', (e) => {
-      leavesLayer.style.transform = `translate3d(0, -${e.scroll * 0.5}px, 0)`;
+    window.addEventListener('resize', () => {
+      clearTimeout(resizeTimeout);
+      resizeTimeout = setTimeout(updateLeavesLayerHeight, 150);
     });
   }
   // ----------------------------------
 
   function raf(time) {
     lenis.raf(time);
+    
+    // AKTUALIZACJA PARALLAX W GŁÓWNEJ PĘTLI ANIMACJI (Gwarancja płynności)
+    if (leavesLayer) {
+      const currentScroll = lenis.scroll || 0; 
+      leavesLayer.style.transform = `translate3d(0, -${currentScroll * 0.5}px, 0)`;
+    }
+
     requestAnimationFrame(raf);
   }
   requestAnimationFrame(raf);
