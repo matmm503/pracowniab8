@@ -1615,30 +1615,32 @@
   // --- LOGIKA PARALAKSY DLA LIŚCI ---
   const leavesLayer = document.getElementById('parallax-leaves-layer');
   
-  // Zmienne zapamiętujące szerokość ekranu oraz całkowitą wysokość dokumentu
+  // Zmienna zapamiętująca szerokość ekranu
   let lastWindowWidth = window.innerWidth;
-  let lastDocHeight = document.documentElement.scrollHeight;
+  // Flaga sprawdzająca, czy to pierwsze uruchomienie
+  let isFirstLeavesInit = true;
   
   function updateLeavesLayerHeight() {
     if (!leavesLayer) return;
     
     const currentWidth = window.innerWidth;
-    const currentDocHeight = document.documentElement.scrollHeight;
     
-    // ZAPOBIEGANIE SKAKANIU NA MOBILE: 
-    // Sprawdzamy czy zmieniła się szerokość ekranu LUB czy urosła treść dokumentu.
-    // Pasek adresu zmienia tylko innerHeight, więc currentDocHeight pozostanie stabilne.
-    if (currentWidth <= 760 && currentWidth === lastWindowWidth && Math.abs(currentDocHeight - lastDocHeight) < 50 && leavesLayer.style.height !== '') {
+    // BLOKADA SKAKANIA (ZAMROŻENIE LIŚCI):
+    // Jeśli to nie jest pierwsze ładowanie strony I szerokość ekranu 
+    // się nie zmieniła, przerywamy funkcję. Dzięki temu rozwijanie 
+    // galerii czy cennika nie zepsuje początkowego ułożenia liści.
+    if (!isFirstLeavesInit && currentWidth === lastWindowWidth) {
       return; 
     }
     
+    isFirstLeavesInit = false;
     lastWindowWidth = currentWidth;
-    lastDocHeight = currentDocHeight;
 
+    const currentDocHeight = document.documentElement.scrollHeight;
     const winHeight = window.innerHeight;
     const maxScroll = Math.max(0, currentDocHeight - winHeight);
     
-    // Ustawiamy wirtualną wysokość kontenera, by wpasować 0.5x prędkość animacji
+    // Ustawiamy wirtualną wysokość kontenera dla paralaksy
     const layerHeight = winHeight + maxScroll * 0.5;
     leavesLayer.style.height = `${layerHeight}px`;
   }
