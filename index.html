@@ -672,6 +672,24 @@
   }
 
   /* DYNAMIC GALLERY - MASONRY & LIGHTBOX */
+  .gallery-expand-overlay {
+    display: none;
+  }
+  .lightbox-swipe-text {
+    display: none;
+    position: absolute;
+    bottom: 30px;
+    left: 50%;
+    transform: translateX(-50%);
+    color: rgba(255,255,255,0.6);
+    font-size: 0.85rem;
+    text-align: center;
+    width: 90%;
+    pointer-events: none;
+    z-index: 10001;
+    font-weight: 500;
+  }
+  
   .gallery-masonry {
     column-count: 3;
     column-gap: 20px;
@@ -961,12 +979,64 @@
     .hero-logo{ width: min(300px, 80vw); }
 
     /* MOBILE GALLERY RESPONSIVE */
-    .gallery-masonry { column-count: 1; }
-    .lightbox-prev, .lightbox-next {
-      width: 44px; height: 44px; font-size: 2rem;
+    .gallery-masonry { 
+      column-count: auto; 
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 10px;
     }
-    .lightbox-prev { left: 12px; }
-    .lightbox-next { right: 12px; }
+    .gallery-masonry-item {
+      aspect-ratio: 1 / 1;
+      margin-bottom: 0;
+    }
+    .gallery-masonry-item img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+    .gallery-wrapper {
+      position: relative;
+    }
+    .gallery-wrapper:not(.expanded) .gallery-masonry-item:nth-of-type(n+7) {
+      display: none;
+    }
+    @keyframes revealPhotos {
+      from { opacity: 0; transform: translateY(15px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+    .gallery-wrapper.expanded .gallery-masonry-item:nth-of-type(n+7) {
+      animation: revealPhotos 0.5s ease forwards;
+    }
+    .gallery-wrapper:not(.expanded) .gallery-expand-overlay {
+      display: flex;
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      width: 100%;
+      height: 140px;
+      background: linear-gradient(to top, var(--bg) 15%, transparent);
+      align-items: flex-end;
+      justify-content: center;
+      padding-bottom: 12px;
+      z-index: 2;
+    }
+    .gallery-expand-btn {
+      padding: 12px 28px;
+      background: var(--bg);
+      color: var(--bottle-green);
+      border: 1px solid var(--glass-border);
+      border-radius: 30px;
+      font-size: 0.9rem;
+      font-weight: 600;
+      box-shadow: 0 6px 20px rgba(31,61,47,0.12);
+      cursor: pointer;
+    }
+    .lightbox-prev, .lightbox-next {
+      display: none !important;
+    }
+    .lightbox-swipe-text {
+      display: block;
+    }
     .lightbox-close { top: 12px; right: 12px; width: 40px; height: 40px; font-size: 1.2rem; }
   }
 </style>
@@ -1363,9 +1433,14 @@
     <h2 class="section-heading">Galeria</h2>
     <p class="section-sub">Zajrzyj do naszej pracowni i zobacz efekty naszej pracy.</p>
 
-    <div class="gallery-masonry" id="galleryMasonry" aria-live="polite">
-      <div class="gallery-loader" id="galleryLoader">Ładowanie zdjęć z galerii...</div>
-      <!-- Zdjęcia generowane automatycznie przez JavaScript -->
+    <div class="gallery-wrapper" id="galleryWrapper">
+      <div class="gallery-masonry" id="galleryMasonry" aria-live="polite">
+        <div class="gallery-loader" id="galleryLoader">Ładowanie zdjęć z galerii...</div>
+        <!-- Zdjęcia generowane automatycznie przez JavaScript -->
+      </div>
+      <div class="gallery-expand-overlay" id="galleryExpandOverlay">
+        <button class="gallery-expand-btn" id="galleryExpandBtn">Rozwiń galerię</button>
+      </div>
     </div>
   </div>
 </section>
@@ -1378,6 +1453,7 @@
      <img id="lightboxImg" src="" alt="">
   </div>
   <button class="lightbox-next" id="lightboxNext" aria-label="Następne zdjęcie">›</button>
+  <div class="lightbox-swipe-text">Przesuń palcem w lewo lub w prawo, aby przeglądać galerię</div>
 </div>
 
 <!-- REZERWACJA -->
@@ -1611,6 +1687,15 @@
   document.querySelectorAll('details.pricing-category').forEach((el) => {
     new SmoothDetails(el);
   });
+
+  // Obsługa przycisku rozwijania galerii na mobile
+  const galleryExpandBtn = document.getElementById('galleryExpandBtn');
+  const galleryWrapper = document.getElementById('galleryWrapper');
+  if (galleryExpandBtn && galleryWrapper) {
+    galleryExpandBtn.addEventListener('click', () => {
+      galleryWrapper.classList.add('expanded');
+    });
+  }
 
   // --- LOGIKA GALERII (Dynamiczne ładowanie, Masonry & Lightbox) ---
   const galleryContainer = document.getElementById('galleryMasonry');
