@@ -741,66 +741,6 @@
     z-index: 10001;
     font-weight: 500;
   }
-  
-  /* ANIMACJA PODPOWIEDZI PRZESUWANIA (SWIPE) - SZYBKA (1s) I IDEALNIE ZGRANA */
-  .swipe-hint {
-    position: absolute;
-    top: 50%; 
-    left: 50%;
-    transform: translate(-50%, -50%);
-    width: 280px;
-    height: 36px;
-    background: rgba(255, 255, 255, 0.25);
-    backdrop-filter: blur(4px);
-    -webkit-backdrop-filter: blur(4px);
-    border: 1px solid rgba(255, 255, 255, 0.4);
-    border-radius: 18px;
-    z-index: 10002;
-    opacity: 0;
-    pointer-events: none;
-    display: none; 
-  }
-
-  .swipe-hint-dot {
-    position: absolute;
-    top: 7px;
-    left: 7px; 
-    width: 20px;
-    height: 20px;
-    background: #ffffff;
-    border-radius: 50%;
-    box-shadow: 0 0 10px rgba(0,0,0,0.4); 
-  }
-
-  @media (max-width: 760px) {
-    .swipe-hint {
-      display: block; 
-    }
-  }
-
-  .swipe-hint.play-anim {
-    /* Czas skrócony do 1 sekundy */
-    animation: hintFade 1s forwards;
-  }
-  
-  .swipe-hint.play-anim .swipe-hint-dot {
-    /* Czas skrócony do 1 sekundy, ciągłe agresywne przyspieszenie */
-    animation: hintSlide 1s cubic-bezier(0.8, 0, 1, 1) forwards;
-  }
-
-  @keyframes hintFade {
-    0% { opacity: 0; }
-    10% { opacity: 1; }
-    95% { opacity: 1; } /* Pasek jest widoczny niemal do samego końca */
-    100% { opacity: 0; }
-  }
-
-  @keyframes hintSlide {
-    0% { transform: translateX(0); opacity: 0; }
-    10% { transform: translateX(0); opacity: 1; }
-    99% { transform: translateX(246px); opacity: 1; } /* Uderza w koniec z pełną widocznością */
-    100% { transform: translateX(246px); opacity: 0; }
-  }
 
   .gallery-masonry {
     column-count: 3;
@@ -1628,11 +1568,8 @@
   </div>
   <button class="lightbox-next" id="lightboxNext" aria-label="Następne zdjęcie">›</button>
   <div class="lightbox-swipe-text">Przesuń palcem w lewo lub w prawo, aby przeglądać galerię</div>
-  
-  <!-- NOWE: Animacja podpowiedzi przesuwania -->
-  <div class="swipe-hint" id="swipeHint">
-    <div class="swipe-hint-dot"></div>
-  </div>
+
+
 </div>
 <!-- KOMUNIKAT GALERII (TOAST) -->
 <div id="galleryToast" class="gallery-toast">
@@ -2038,15 +1975,6 @@
     // Zablokuj scrollowanie w tle przy otwartym modalu
     if (typeof lenis !== 'undefined') lenis.stop();
     document.body.style.overflow = 'hidden';
-    
-    // START ANIMACJI PRZESUWANIA (SWIPE)
-    const swipeHint = document.getElementById('swipeHint');
-    if (swipeHint) {
-      swipeHint.classList.remove('play-anim'); 
-      setTimeout(() => {
-        swipeHint.classList.add('play-anim'); 
-      }, 300); 
-    }
     
     // Ustawienie focusu
     setTimeout(() => btnNext.focus(), 50);
