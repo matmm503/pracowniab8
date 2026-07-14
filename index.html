@@ -9,7 +9,43 @@
 <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;1,400&display=swap" rel="stylesheet">
 <!-- Lenis Smooth Scroll -->
 <script src="https://unpkg.com/lenis@1.1.18/dist/lenis.min.js"></script>
+<!-- GSAP & ScrollTrigger -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
 <style>
+  /* Custom Cursor - Działa tylko na urządzeniach wskazujących (myszka) */
+  @media (pointer: fine) {
+    body {
+      cursor: none; /* Ukrywa systemowy kursor */
+    }
+    
+    a, button, summary, .gallery-masonry-item {
+      cursor: none; /* Ukrywa kursor nad klikalnymi elementami */
+    }
+
+  .custom-cursor {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 12px;
+    height: 12px;
+    background: var(--sand-gold);
+    border-radius: 50%;
+    pointer-events: none;
+    z-index: 10001; /* Zawsze na wierzchu */
+    transform: translate(-50%, -50%);
+    transition: width 0.3s ease, height 0.3s ease, background-color 0.3s ease, mix-blend-mode 0.3s ease;
+  }
+
+  /* Klasa dodawana w JS po najechaniu na przycisk/link */
+  .custom-cursor.hovered {
+    width: 45px;
+    height: 45px;
+    background: rgba(207, 168, 118, 0.5); /* Półprzezroczyste złoto */
+    border: 1px solid var(--sand-gold);
+    backdrop-filter: blur(4px);
+  }
+}
   :root{
     --bg: #fcfbfa;
     --bottle-green: #1f3d2f;
@@ -1216,6 +1252,7 @@
 </style>
 </head>
 <body>
+<div class="custom-cursor" id="customCursor"></div>
 
 <!-- KONTENER NA DEKORACYJNE LIŚCIE -->
 <div id="parallax-leaves-wrapper" style="position: fixed; top: 0; left: 0; width: 100%; height: 100vh; z-index: -1; pointer-events: none; overflow: hidden;">
@@ -1743,6 +1780,105 @@
 </footer>
 
 <script>
+  // Rejestracja wtyczki ScrollTrigger
+  gsap.registerPlugin(ScrollTrigger);
+
+  // Animacja wyłaniania nagłówków i sekcji "O nas"
+  gsap.utils.toArray('.section-heading, .section-sub, .about-card').forEach(element => {
+    gsap.from(element, {
+      scrollTrigger: {
+        trigger: element,
+        start: "top 85%", // Animacja startuje, gdy góra elementu osiągnie 85% wysokości ekranu
+        toggleActions: "play none none reverse" // Wraca do stanu początkowego przy scrollowaniu w górę
+      },
+      y: 40,
+      opacity: 0,
+      duration: 1.2,
+      ease: "power3.out"
+    });
+  });
+
+  // Kaskadowe (stagger) wyłanianie kart w siatkach (Usługi, Zespół, Nashi)
+  const grids = ['.services-grid', '.team-grid', '.nashi-grid'];
+  grids.forEach(gridClass => {
+    const grid = document.querySelector(gridClass);
+    if (grid) {
+      const cards = grid.children;
+      gsap.from(cards, {
+        scrollTrigger: {
+          trigger: grid,
+          start: "top 80%",
+          toggleActions: "play none none reverse"
+        },
+        y: 50,
+        opacity: 0,
+        duration: 1,
+        stagger: 0.15, // Opóźnienie między każdą kolejną kartą (efekt fali)
+        ease: "power3.out"
+      });
+    }
+  });
+
+  // Magnetyczne Przyciski
+  const magneticButtons = document.querySelectorAll('.btn');
+
+  if (window.matchMedia("(pointer: fine)").matches) {
+    magneticButtons.forEach(btn => {
+      btn.addEventListener('mousemove', (e) => {
+        const position = btn.getBoundingClientRect();
+        // Obliczanie środka przycisku
+        const x = e.clientX - position.left - position.width / 2;
+        const y = e.clientY - position.top - position.height / 2;
+        
+        // Delikatne przesunięcie elementu w stronę kursora
+        gsap.to(btn, {
+          x: x * 0.3, // Siła przyciągania X
+          y: y * 0.4, // Siła przyciągania Y
+          duration: 0.3,
+          ease: "power2.out"
+        });
+      });
+
+      btn.addEventListener('mouseleave', () => {
+        // Sprężysty powrót na miejsce
+        gsap.to(btn, {
+          x: 0,
+          y: 0,
+          duration: 0.8,
+          ease: "elastic.out(1, 0.3)"
+        });
+      });
+    });
+  }
+
+
+  // Logika Custom Kursora (aktywna tylko jeśli element istnieje)
+  const cursor = document.getElementById('customCursor');
+  if (cursor && window.matchMedia("(pointer: fine)").matches) {
+    // Płynne podążanie kursora za pomocą GSAP
+    let mouseX = 0, mouseY = 0;
+    let cursorX = 0, cursorY = 0;
+
+    window.addEventListener('mousemove', (e) => {
+      mouseX = e.clientX;
+      mouseY = e.clientY;
+    });
+
+    // Płynność kursora
+    gsap.ticker.add(() => {
+      cursorX += (mouseX - cursorX) * 0.2;
+      cursorY += (mouseY - cursorY) * 0.2;
+      gsap.set(cursor, { x: cursorX, y: cursorY });
+    });
+
+    // Efekt po najechaniu na klikalne elementy
+    const interactables = document.querySelectorAll('a, button, summary, .gallery-masonry-item');
+    interactables.forEach(el => {
+      el.addEventListener('mouseenter', () => cursor.classList.add('hovered'));
+      el.addEventListener('mouseleave', () => cursor.classList.remove('hovered'));
+    });
+  }
+
   // Inicjalizacja luksusowego Smooth Scroll (Lenis)
   const lenis = new Lenis({
     duration: 1.2,
