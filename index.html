@@ -898,52 +898,37 @@
 
   /* FOOTER */
   footer {
-    position: relative;
-    padding: 140px 0 40px; /* Zwiększony padding góra, żeby tekst miał miejsce po przejściu koloru */
+    /* Ciągły, elegancki gradient na całej powierzchni stopki */
+    background: linear-gradient(to bottom, #2b523f 0%, var(--bottle-green) 100%);
     color: #f2ede2;
-    margin-top: 0; /* Zdejmujemy margines, stopka zaczyna się równo pod treścią strony */
+    padding: 90px 0 40px;
+    position: relative;
+    overflow: hidden; /* Przycina liście, żeby nie wychodziły poza obszar stopki */
   }
 
-  /* Cała stopka staje się gradientem (zamkniętym w jej obszarze) */
-  footer::before {
-    content: '';
-    position: absolute;
-    inset: 0; /* Rozciąga się dokładnie od krawędzi do krawędzi samej stopki */
-    
-    /* Gradient: szybciej zaczyna się zieleń, by tekst był czytelny, dołem jest mocniejsza */
-    background: linear-gradient(
-      to bottom,
-      rgba(31, 61, 47, 0) 0%,        /* Całkowicie przezroczyste na samej krawędzi styku */
-      rgba(31, 61, 47, 0.75) 25%,    /* Szybkie, delikatne przejście do zieleni */
-      rgba(31, 61, 47, 0.95) 70%,    /* Coraz więcej gęstej zieleni */
-      var(--bottle-green) 100%       /* Pełny kolor na samym dole */
-    );
-    z-index: 1; /* Leży NAD liśćmi, ale POD tekstem */
-    pointer-events: none;
-  }
-
-  /* Wyciągnięcie tekstu stopki nad warstwę gradientu */
+  /* Wyciągnięcie tekstu stopki nad liście */
   footer .container {
     position: relative;
     z-index: 2;
   }
 
-  /* Liście schowane w stopce na samym dole */
+  /* Statyczne liście wewnątrz stopki */
   .footer-leaf {
     position: absolute;
-    bottom: 0; 
-    max-width: 35vw; /* Możesz dostosować wielkość liści */
+    bottom: -5%; /* Lekko opuszczone, by dół liścia zniknął za krawędzią ekranu */
+    max-width: 35vw;
     height: auto;
     pointer-events: none;
-    z-index: 0; /* Siedzą na samym spodzie, pod gradientem */
+    z-index: 0;
+    opacity: 0.6; /* Delikatnie zmniejszona widoczność, by lepiej stopiły się z gradientem */
   }
 
   .footer-leaf-left {
-    left: 0;
+    left: -2%;
   }
 
   .footer-leaf-right {
-    right: 0;
+    right: -2%;
   }
 
   @media (max-width: 760px) {
@@ -951,7 +936,6 @@
       max-width: 50vw;
     }
   }
-
   .footer-grid{
     display:grid;
     grid-template-columns: repeat(4, 1fr);
@@ -1175,7 +1159,6 @@
     <!-- Liście prawa strona -->
     <img src="PG1.png" class="parallax-leaf" style="top: 0; right: 0;" alt="">
     <img src="PS1.png" class="parallax-leaf" style="top: 48%; right: 0;" alt="">
-    <img src="PD1.png" class="parallax-leaf" style="bottom: 0; right: 0;" alt="">
   </div>
 </div>
 
