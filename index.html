@@ -481,13 +481,17 @@
   }
 
   .cat-chevron {
-    font-size: 1.2rem;
-    color: var(--bottle-green);
+    display: inline-block;
+    width: 10px;  /* Szerokość strzałki */
+    height: 10px; /* Wysokość strzałki */
+    border-right: 3px solid var(--bottle-green);  /* Grubość linii (zmień na 4px jeśli ma być jeszcze grubsza) */
+    border-bottom: 3px solid var(--bottle-green); /* Grubość linii (zmień na 4px jeśli ma być jeszcze grubsza) */
+    transform: translateY(-3px) rotate(45deg); /* Formuje kąt w dół i lekko unosi dla wyśrodkowania */
     transition: transform 0.35s ease;
   }
 
   .pricing-category[open] .cat-chevron {
-    transform: rotate(180deg);
+    transform: translateY(3px) rotate(225deg); /* Obraca strzałkę w górę przy otwartym akordeonie */
   }
 
   .pricing-body{
@@ -1232,7 +1236,7 @@
         <summary>
           <span class="cat-icon">✂</span>
           <span class="cat-title">Strzyżenie</span>
-          <span class="cat-chevron">▾</span>
+          <span class="cat-chevron"></span>
         </summary>
         <div class="accordion-content">
           <div class="pricing-body">
@@ -1302,7 +1306,7 @@
         <summary>
           <span class="cat-icon">✾</span>
           <span class="cat-title">Koloryzacja</span>
-          <span class="cat-chevron">▾</span>
+          <span class="cat-chevron"></span>
         </summary>
         <div class="accordion-content">
           <div class="pricing-body">
@@ -1367,7 +1371,7 @@
         <summary>
           <span class="cat-icon">✦</span>
           <span class="cat-title">Stylizacja i upięcia</span>
-          <span class="cat-chevron">▾</span>
+          <span class="cat-chevron"></span>
         </summary>
         <div class="accordion-content">
           <div class="pricing-body">
@@ -1417,7 +1421,7 @@
         <summary>
           <span class="cat-icon">❋</span>
           <span class="cat-title">Pielęgnacja i regeneracja</span>
-          <span class="cat-chevron">▾</span>
+          <span class="cat-chevron"></span>
         </summary>
         <div class="accordion-content">
           <div class="pricing-body">
