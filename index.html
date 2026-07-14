@@ -742,7 +742,7 @@
     font-weight: 500;
   }
   
-  /* ANIMACJA PODPOWIEDZI PRZESUWANIA (SWIPE) - WERSJA 2x WIĘKSZA I AGRESYWNA */
+  /* ANIMACJA PODPOWIEDZI PRZESUWANIA (SWIPE) - SZYBKA (1s) I IDEALNIE ZGRANA */
   .swipe-hint {
     position: absolute;
     top: 50%; 
@@ -779,25 +779,26 @@
   }
 
   .swipe-hint.play-anim {
-    animation: hintFade 1.2s forwards;
+    /* Czas skrócony do 1 sekundy */
+    animation: hintFade 1s forwards;
   }
   
   .swipe-hint.play-anim .swipe-hint-dot {
-    /* (0.8, 0, 1, 1) wymusza powolny start i ekstremalne przyspieszenie na końcu */
-    animation: hintSlide 1.2s cubic-bezier(0.8, 0, 1, 1) forwards;
+    /* Czas skrócony do 1 sekundy, ciągłe agresywne przyspieszenie */
+    animation: hintSlide 1s cubic-bezier(0.8, 0, 1, 1) forwards;
   }
 
   @keyframes hintFade {
     0% { opacity: 0; }
-    15% { opacity: 1; }
-    75% { opacity: 1; }
+    10% { opacity: 1; }
+    95% { opacity: 1; } /* Pasek jest widoczny niemal do samego końca */
     100% { opacity: 0; }
   }
 
   @keyframes hintSlide {
     0% { transform: translateX(0); opacity: 0; }
-    15% { transform: translateX(0); opacity: 1; }
-    90% { transform: translateX(246px); opacity: 1; }
+    10% { transform: translateX(0); opacity: 1; }
+    99% { transform: translateX(246px); opacity: 1; } /* Uderza w koniec z pełną widocznością */
     100% { transform: translateX(246px); opacity: 0; }
   }
 
