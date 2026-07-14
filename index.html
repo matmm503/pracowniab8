@@ -1817,40 +1817,7 @@
       });
     }
   });
-
-  // Magnetyczne Przyciski
-  const magneticButtons = document.querySelectorAll('.btn');
-
-  if (window.matchMedia("(pointer: fine)").matches) {
-    magneticButtons.forEach(btn => {
-      btn.addEventListener('mousemove', (e) => {
-        const position = btn.getBoundingClientRect();
-        // Obliczanie środka przycisku
-        const x = e.clientX - position.left - position.width / 2;
-        const y = e.clientY - position.top - position.height / 2;
-        
-        // Delikatne przesunięcie elementu w stronę kursora
-        gsap.to(btn, {
-          x: x * 0.3, // Siła przyciągania X
-          y: y * 0.4, // Siła przyciągania Y
-          duration: 0.3,
-          ease: "power2.out"
-        });
-      });
-
-      btn.addEventListener('mouseleave', () => {
-        // Sprężysty powrót na miejsce
-        gsap.to(btn, {
-          x: 0,
-          y: 0,
-          duration: 0.8,
-          ease: "elastic.out(1, 0.3)"
-        });
-      });
-    });
-  }
-
-
+  
   // Logika Custom Kursora (aktywna tylko jeśli element istnieje)
   const cursor = document.getElementById('customCursor');
   if (cursor && window.matchMedia("(pointer: fine)").matches) {
