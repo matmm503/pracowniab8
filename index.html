@@ -1977,7 +1977,7 @@
 
   // Automatyczne sprawdzanie i dodawanie zdjęć (wywoływane PO zniknięciu loadera)
   function loadGalleryImage(index) {
-    const imgPath = `galeria/${index}.jpg`;
+    const imgPath = `galeria/${index}.jpeg`;
     const img = new Image();
     
     img.onload = () => {
@@ -2011,7 +2011,7 @@
     };
 
     img.onerror = () => {
-      // Natrafiono na brak pliku (np. brak 12.jpg) - koniec wyszukiwania
+      // Natrafiono na brak pliku (np. brak 12.jpeg) - koniec wyszukiwania
       if(index === 1 && galleryLoader) {
         galleryLoader.textContent = 'Brak zdjęć w galerii.';
       }
