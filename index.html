@@ -742,19 +742,19 @@
     font-weight: 500;
   }
   
-/* ANIMACJA PODPOWIEDZI PRZESUWANIA (SWIPE) */
+  /* ANIMACJA PODPOWIEDZI PRZESUWANIA (SWIPE) - WERSJA 2x WIĘKSZA */
   .swipe-hint {
     position: absolute;
     top: 50%; 
     left: 50%;
     transform: translate(-50%, -50%);
-    width: 140px; /* Szerszy pasek */
-    height: 18px; /* Gruby pasek */
-    background: rgba(255, 255, 255, 0.25); /* Półprzezroczyste tło */
+    width: 280px; /* 2x szerszy */
+    height: 36px; /* 2x grubszy */
+    background: rgba(255, 255, 255, 0.25);
     backdrop-filter: blur(4px);
     -webkit-backdrop-filter: blur(4px);
     border: 1px solid rgba(255, 255, 255, 0.4);
-    border-radius: 9px; /* Zaokrąglenie równe połowie wysokości = kształt kapsułki */
+    border-radius: 18px; /* 2x większe zaokrąglenie (połowa wysokości) */
     z-index: 10002;
     opacity: 0;
     pointer-events: none;
@@ -763,13 +763,13 @@
 
   .swipe-hint-dot {
     position: absolute;
-    top: 3px; /* Kropka idealnie wyśrodkowana wewnątrz (18px - 10px = 8px luzu, po 4px na stronę, ale odliczamy border) */
-    left: 3px;
-    width: 10px; /* Kropka jest mniejsza niż wysokość paska */
-    height: 10px;
+    top: 7px; /* Wyśrodkowane w grubszym pasku */
+    left: 7px; 
+    width: 20px; /* 2x większa kropka */
+    height: 20px;
     background: #ffffff;
     border-radius: 50%;
-    box-shadow: 0 0 6px rgba(0,0,0,0.3); 
+    box-shadow: 0 0 10px rgba(0,0,0,0.4); 
   }
 
   @media (max-width: 760px) {
@@ -779,25 +779,26 @@
   }
 
   .swipe-hint.play-anim {
-    animation: hintFade 1.6s forwards;
+    /* Skróciłem czas do 1.2s, żeby swipe był szybki i zdecydowany */
+    animation: hintFade 1.2s forwards;
   }
   .swipe-hint.play-anim .swipe-hint-dot {
-    /* Dystans: 140px (pasek) - 6px (marginesy L/P) - 10px (kropka) = 124px */
-    animation: hintSlide 1.6s cubic-bezier(0.25, 1, 0.5, 1) forwards;
+    /* ease-in odpowiada za przyspieszanie bez zwalniania na końcu */
+    animation: hintSlide 1.2s ease-in forwards;
   }
 
   @keyframes hintFade {
     0% { opacity: 0; }
     15% { opacity: 1; }
-    80% { opacity: 1; }
+    75% { opacity: 1; }
     100% { opacity: 0; }
   }
 
   @keyframes hintSlide {
     0% { transform: translateX(0); opacity: 0; }
     15% { transform: translateX(0); opacity: 1; }
-    70% { transform: translateX(124px); opacity: 1; } 
-    100% { transform: translateX(124px); opacity: 0; }
+    /* Przesunięcie o 246px (szerokość paska minus kropka i marginesy) */
+    100% { transform: translateX(246px); opacity: 0; }
   }
 
   .gallery-masonry {
