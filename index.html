@@ -482,16 +482,18 @@
 
   .cat-chevron {
     display: inline-block;
-    width: 10px;  /* Szerokość strzałki */
-    height: 10px; /* Wysokość strzałki */
-    border-right: 3px solid var(--bottle-green);  /* Grubość linii (zmień na 4px jeśli ma być jeszcze grubsza) */
-    border-bottom: 3px solid var(--bottle-green); /* Grubość linii (zmień na 4px jeśli ma być jeszcze grubsza) */
-    transform: translateY(-3px) rotate(45deg); /* Formuje kąt w dół i lekko unosi dla wyśrodkowania */
+    width: 16px; 
+    height: 16px;
+    /* Poniżej wklejamy czysty wektor SVG - idealnie równa strzałka w kolorze butelkowej zieleni (#1f3d2f) */
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%231f3d2f' stroke-width='3' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpolyline points='6 9 12 15 18 9'%3E%3C/polyline%3E%3C/svg%3E");
+    background-size: contain;
+    background-repeat: no-repeat;
+    background-position: center;
     transition: transform 0.35s ease;
   }
 
   .pricing-category[open] .cat-chevron {
-    transform: translateY(3px) rotate(225deg); /* Obraca strzałkę w górę przy otwartym akordeonie */
+    transform: rotate(180deg); /* Przy otwarciu po prostu odwracamy wektor o 180 stopni */
   }
 
   .pricing-body{
