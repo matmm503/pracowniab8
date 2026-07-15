@@ -172,17 +172,24 @@
     color: var(--sand-gold);
   }
 
-  /* Logika chowania/pokazywania napisu */
+  /* --- Logika chowania/pokazywania odpowiednich wyrazów --- */
+  .nav-logo .text-scrolled,
   .nav-logo .logo-short {
-    display: none;
+    display: none; /* Domyślnie ukryte na samym zdjęciu (Hero) */
   }
+  
+  .navbar.scrolled .nav-logo .text-top,
+  .navbar.at-footer .nav-logo .text-top,
   .navbar.scrolled .nav-logo .logo-full,
   .navbar.at-footer .nav-logo .logo-full {
-    display: none;
+    display: none; /* Ukrywamy "Bernardyńska 8 Rzeszów" podczas scrolla i na stopce */
   }
+  
+  .navbar.scrolled .nav-logo .text-scrolled,
+  .navbar.at-footer .nav-logo .text-scrolled,
   .navbar.scrolled .nav-logo .logo-short,
   .navbar.at-footer .nav-logo .logo-short {
-    display: inline;
+    display: inline; /* Pokazujemy "Pracownia B8" podczas scrolla i na stopce */
   }
 
   .nav-links{
@@ -1392,7 +1399,8 @@
 <nav class="navbar" id="navbar">
   <div class="nav-inner container">
     <a href="#top" class="nav-logo">
-      BERNARDYŃSKA 8 
+      <span class="text-top">BERNARDYŃSKA 8 </span>
+      <span class="text-scrolled">PRACOWNIA </span>
       <span class="logo-full">RZESZÓW</span>
       <span class="logo-short">B8</span>
       <span class="nav-sub">
