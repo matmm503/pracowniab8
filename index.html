@@ -13,38 +13,6 @@
 <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
 <style>
-
-  /* Custom Cursor - Działa tylko na urządzeniach wskazujących (myszka) */
-@media (pointer: fine) {
-  
-  /* Gwiazdka (*) oznacza, że ukrywamy kursor siłowo na absolutnie każdym elemencie strony */
-  * {
-    cursor: none !important;
-  }
-
-  .custom-cursor {
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 12px;
-    height: 12px;
-    background: var(--sand-gold);
-    border-radius: 50%;
-    pointer-events: none;
-    z-index: 10001; /* Zawsze na wierzchu */
-    transform: translate(-50%, -50%);
-    transition: width 0.3s ease, height 0.3s ease, background-color 0.3s ease, mix-blend-mode 0.3s ease;
-  }
-
-  /* Klasa dodawana w JS po najechaniu na przycisk/link */
-  .custom-cursor.hovered {
-    width: 45px;
-    height: 45px;
-    background: rgba(207, 168, 118, 0.5); /* Półprzezroczyste złoto */
-    border: 1px solid var(--sand-gold);
-    backdrop-filter: blur(4px);
-  }
-}
   :root{
     --bg: #fcfbfa;
     --bottle-green: #1f3d2f;
@@ -83,16 +51,20 @@
   section{ padding: 120px 0; position: relative; }
 
   .eyebrow{
+    font-family: 'Bebas Neue', sans-serif;
     text-transform: uppercase;
-    letter-spacing: 3px;
-    font-size: 0.75rem;
-    font-weight: 600;
+    letter-spacing: 6px; /* Zwiększony odstęp między literami */
+    font-size: 0.85rem; /* Minimalnie powiększone, bo Bebas jest optycznie węższy/mniejszy */
+    font-weight: 400; /* Bebas najlepiej wygląda bez dodatkowego pogrubienia */
     color: var(--sand-gold);
     margin-bottom: 14px;
     display:block;
   }
 
   .section-heading{
+    font-family: 'Bebas Neue', sans-serif;
+    font-weight: 400;
+    letter-spacing: 1.5px; /* Delikatny odstęp dla poprawy czytelności */
     font-size: clamp(2.2rem, 4vw, 3.2rem);
     margin-bottom: 20px;
   }
@@ -1305,7 +1277,6 @@
 </style>
 </head>
 <body>
-<div class="custom-cursor" id="customCursor"></div>
 
 <!-- KONTENER NA DEKORACYJNE LIŚCIE -->
 <div id="parallax-leaves-wrapper" style="position: fixed; top: 0; left: 0; width: 100%; height: 100vh; z-index: -1; pointer-events: none; overflow: hidden;">
@@ -1872,33 +1843,6 @@
     }
   });
   
-  // Logika Custom Kursora (aktywna tylko jeśli element istnieje)
-  const cursor = document.getElementById('customCursor');
-  if (cursor && window.matchMedia("(pointer: fine)").matches) {
-    // Płynne podążanie kursora za pomocą GSAP
-    let mouseX = 0, mouseY = 0;
-    let cursorX = 0, cursorY = 0;
-
-    window.addEventListener('mousemove', (e) => {
-      mouseX = e.clientX;
-      mouseY = e.clientY;
-    });
-
-    // Płynność kursora
-    gsap.ticker.add(() => {
-      cursorX += (mouseX - cursorX) * 0.2;
-      cursorY += (mouseY - cursorY) * 0.2;
-      gsap.set(cursor, { x: cursorX, y: cursorY });
-    });
-
-    // Efekt po najechaniu na klikalne elementy
-    const interactables = document.querySelectorAll('a, button, summary, .gallery-masonry-item');
-    interactables.forEach(el => {
-      el.addEventListener('mouseenter', () => cursor.classList.add('hovered'));
-      el.addEventListener('mouseleave', () => cursor.classList.remove('hovered'));
-    });
-  }
-
   // Inicjalizacja luksusowego Smooth Scroll (Lenis)
   const lenis = new Lenis({
     duration: 1.2,
