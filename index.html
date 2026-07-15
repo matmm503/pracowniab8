@@ -162,12 +162,10 @@
 
   .navbar.scrolled .nav-logo{ color: var(--bottle-green); text-shadow: none; font-size: 1.6rem; }
 
-  .nav-logo .logo-full,
   .nav-logo .logo-short {
     color: var(--sand-gold-light);
     transition: color 0.4s ease;
   }
-  .navbar.scrolled .nav-logo .logo-full,
   .navbar.scrolled .nav-logo .logo-short {
     color: var(--sand-gold);
   }
@@ -179,10 +177,8 @@
   }
   
   .navbar.scrolled .nav-logo .text-top,
-  .navbar.at-footer .nav-logo .text-top,
-  .navbar.scrolled .nav-logo .logo-full,
-  .navbar.at-footer .nav-logo .logo-full {
-    display: none; /* Ukrywamy "Bernardyńska 8 Rzeszów" podczas scrolla i na stopce */
+  .navbar.at-footer .nav-logo .text-top {
+    display: none; /* Ukrywamy "Bernardyńska 8" podczas scrolla i na stopce */
   }
   
   .navbar.scrolled .nav-logo .text-scrolled,
@@ -1158,8 +1154,8 @@
     .navbar.scrolled .nav-logo{ font-size: 1.6rem; }
     
     /* --- NOWY KOD: Bernardyńska 8 pomniejszona na telefonach o 25% względem Pracowni --- */
-    /* Rzeszów na telefonach wyraźnie mniejszy (zmniejszony o 45%) */
-    .nav-logo .logo-full { font-size: 0.55em; }
+    /* Pomniejszamy całe "Bernardyńska 8" na telefonach by zmieściło się w pasku */
+    .nav-logo .text-top { font-size: 0.72em; }
 
     .nav-links{
       position: fixed;
@@ -1327,7 +1323,6 @@
     text-shadow: none !important;
   }
 
-  .navbar.at-footer .nav-logo .logo-full,
   .navbar.at-footer .nav-logo .logo-short {
     color: var(--sand-gold) !important;
   }
@@ -1399,9 +1394,8 @@
 <nav class="navbar" id="navbar">
   <div class="nav-inner container">
     <a href="#top" class="nav-logo">
-      <span class="text-top">BERNARDYŃSKA 8 </span>
+      <span class="text-top">BERNARDYŃSKA 8</span>
       <span class="text-scrolled">PRACOWNIA </span>
-      <span class="logo-full">RZESZÓW</span>
       <span class="logo-short">B8</span>
       <span class="nav-sub">
         <span>F</span><span>R</span><span>Y</span><span>Z</span><span>J</span><span>E</span><span>R</span><span>S</span><span>T</span><span>W</span><span>O</span>
