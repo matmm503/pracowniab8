@@ -131,19 +131,26 @@
     transition: color 0.4s ease, text-shadow 0.4s ease, font-size 0.4s ease;
   }
 
-  /* --- NOWY KOD: Styl i animacja dla FRYZJERSTWO --- */
+
+  /* --- NAPRAWIONY KOD: Styl i animacja dla FRYZJERSTWO --- */
   .nav-sub {
     position: absolute;
     top: 96%; 
     left: 0;
-    width: 100%; /* Wymusza dokładną szerokość napisu Pracownia B8 */
+    width: calc(100% - 2px); /* Trik! Odejmujemy 2px niewidzialnego odstępu po literze '8' */
     text-align: justify;
-    text-align-last: justify; /* Rozciąga litery IDEALNIE od lewej do prawej krawędzi */
+    text-align-last: justify; 
     font-family: 'Bebas Neue', sans-serif;
-    font-size: 0.85rem;
-    letter-spacing: 0; /* Wyłączamy sztuczne odstępy */
+    
+    /* KLUCZOWA ZMIANA: Zamiast sztywnego 'rem', używamy 'em', 
+       dzięki czemu napis ZAWSZE ma proporcję ~34% wielkości głównego logo,
+       niezależnie czy jesteśmy na górze, czy na małym pasku! */
+    font-size: 0.34em; 
+    
+    letter-spacing: 0; 
     color: var(--bottle-green);
     text-shadow: none !important;
+    white-space: nowrap; /* Gwarantuje, że litery nigdy nie spadną do nowej linii */
     
     /* Ukryte na samej górze strony */
     opacity: 0;
