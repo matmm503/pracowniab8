@@ -992,9 +992,8 @@
   }
   .footer-grid{
     display: grid;
-    /* Zamiast 4 równych kolumn, dajemy więcej miejsca opisowi i kontaktowi, 
-       a zwężamy ikony i adres, dzięki czemu znikną gigantyczne dziury: */
-    grid-template-columns: 3fr 2.5fr 1.5fr 1.5fr; 
+    /* Zmniejszone poszerzenie pierwszej kolumny – idealny balans dla 4 sekcji: */
+    grid-template-columns: 2fr 2fr 1fr 1.2fr; 
     gap: 30px;
   }
 
@@ -1379,6 +1378,7 @@
       <li><a href="#zespol">Zespół</a></li>
       <li><a href="#nashi">Nashi</a></li>
       <li><a href="#galeria">Galeria</a></li>
+      <li><a href="#kontakt">Kontakt</a></li>
       <li><a href="#rezerwacja">puste</a></li>
     </ul>
     <button class="nav-toggle" id="navToggle" aria-label="Otwórz menu">
